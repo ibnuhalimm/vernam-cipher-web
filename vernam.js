@@ -27,14 +27,10 @@ const convertVernam = (source, key) => {
     source_text.split('')
         .map((text, idx) => {
             let dec_source = text.charCodeAt(0);
-                // bin_source = dec_source.toString(2);
                 bin_source = decToBin(dec_source);
             
             let dec_key = new_key.charCodeAt(idx);
                 bin_key = decToBin(dec_key);
-
-            // console.log(text + ' = ' + dec_source + ' = ' + bin_source);    
-            // console.log(new_key + ' = ' + dec_key + ' = ' + bin_key);
 
             operate_bin.push({
                 'source': bin_source,
@@ -47,8 +43,6 @@ const convertVernam = (source, key) => {
         let bin_operate_source = operate_bin[i].source,
             bin_operate_key = operate_bin[i].key;
 
-        // console.log(bin_operate_key);
-
         let bin_cipher_char = '';
 
         bin_operate_source.split('')
@@ -57,7 +51,6 @@ const convertVernam = (source, key) => {
                         });
 
         cipher_bin.push(bin_cipher_char);
-        // console.log(bin_cipher_char);
     }
 
 
@@ -65,16 +58,7 @@ const convertVernam = (source, key) => {
         let cipher_dec = parseInt(bin, 2);
 
         cipher_text += String.fromCharCode(cipher_dec);
-        // cipher_text += cipher_dec;
     });
-
-    // console.log(cipher_bin);
-    // console.log(cipher_text);
 
     return cipher_text;
 };
-
-
-// console.log(convertVernam('UNISBANK', '5M9'));
-
-// console.log(convertVernam('*0#“;*;)', 'kunci'));
