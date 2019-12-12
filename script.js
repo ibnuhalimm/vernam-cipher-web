@@ -34,3 +34,23 @@ $('#__btnConvert').click(function() {
             .find('span').attr('Convert');
     }, 1000);
 });
+
+
+
+$('#__btnReset').click(function() {
+    $('#__textSource').val('');
+    $('#__textKey').val('');
+    $('#__textResult').val('');
+});
+
+
+$('#__btnCopy').click(function() {
+    let result = document.getElementById("__textResult");
+
+    result.select();
+    result.setSelectionRange(0, 99999);
+
+    document.execCommand('copy');
+
+    result.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC
+});
