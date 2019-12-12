@@ -1,6 +1,19 @@
+/**
+ * decToBin
+ * Konversi bilangan desimal ke biner 1 byte
+ * 
+ * @param {int} number 
+ * @return {String}
+ */
+
 const decToBin = (number) => {
+    // deklarasi variabel bin dan konversi ke biner
     let bin = number.toString(2);
 
+    /**
+     * jika panjang biner yang dihasilkan belum 8 karakter
+     * tambahkan 0 sebanyak yang dibutuhkan
+    */
     while (bin.length < 8) {
         bin = '0' + bin;
     }
@@ -9,21 +22,52 @@ const decToBin = (number) => {
 };
 
 
+/**
+ * convertVernam
+ * Proses konversi Enkripsi / Dekripsi dengan metode Vernam Cipher
+ * 
+ * @param {String} source 
+ * @param {String} key 
+ */
 const convertVernam = (source, key) => {
+    /**
+     * deklarasi variabel source_text {String}  : untuk menyimpan parameter source
+     * deklarasi variabel key_text {String}     : untuk menyimpan parameter key
+     */
     let source_text = source,
         key_text = key;
 
+    /**
+     * deklarasi parameter new_key untuk menyimpan key baru jika
+     * panjang key kurang dari panjang plaintext,
+     */
     let new_key = key_text;
+
+    /**
+     * deklarasi variabel :
+     * - operate_bin {array}    : temporary variable hasil konversi per karakter
+     * - cipher_bin {array}     : menyimpan data binner hasil operasi xor
+     * - cipher_text {array}    : hasil operasi xor 
+     */
     let operate_bin = [],
         cipher_bin = [],
         cipher_text = '';
 
-
+    /**
+     * Periksa, jika panjang karakter key kurang dari panjang karakter source / plain text
+     * Gandakan semua karakternya
+     */
     if (source_text.length > key_text.length) {
         new_key = key_text.repeat(Math.ceil(source_text.length / key_text.length));
     }
 
 
+    /**
+     * Konversi ke desimal ASCII Code dan biner nya setiap karakter pada
+     * plain / source text dan key
+     * 
+     * dan simpan ke temporary variable
+     */
     source_text.split('')
         .map((text, idx) => {
             let dec_source = text.charCodeAt(0);
@@ -32,6 +76,9 @@ const convertVernam = (source, key) => {
             let dec_key = new_key.charCodeAt(idx);
                 bin_key = decToBin(dec_key);
 
+            /**
+             * Simpan hasil konversi biner ke temporary variable
+             */
             operate_bin.push({
                 'source': bin_source,
                 'key': bin_key
@@ -39,6 +86,11 @@ const convertVernam = (source, key) => {
         });
 
 
+    /**
+     * Melakukan operasi XOR pada setiap karakter biner
+     * antara plain / source text dengan key
+     * dan simpan hasilnya ke variable
+     */
     for (let i = 0; i < operate_bin.length; i++) {
         let bin_operate_source = operate_bin[i].source,
             bin_operate_key = operate_bin[i].key;
@@ -54,6 +106,12 @@ const convertVernam = (source, key) => {
     }
 
 
+    /**
+     * Konversi setiap biner hasil operasi XOR tadi ke desimal dan karakter
+     * berdasarkan ASCII Code
+     * 
+     * Simpan setiap karakter ke satu variable sehinggan membentuk satu teks / String
+     */
     cipher_bin.map((bin, idx) => {
         let cipher_dec = parseInt(bin, 2);
 
