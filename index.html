@@ -1,13 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vernam Cipher</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/fontawesome/css/all.min.css">
 </head>
+
 <body>
-    
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+            <a class="navbar-brand" href="#">
+                Vernam Cipher
+            </a>
+        </nav>
+
+        <div class="mt-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">
+                        Encrypt
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="decrypt.html">
+                        Decrypt
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="__textSource">
+                            Plaintext <span class="text-danger">*</span>
+                        </label>
+                        <textarea name="" id="__textSource" rows="5" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="__textKey">
+                            Key <span class="text-danger">*</span>
+                        </label>
+                        <textarea name="" id="__textKey" rows="5" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary" id="__btnConvert">
+                        <i class="fas fa-sync"></i> <span>Convert</span>
+                    </button>
+                    <button class="btn btn-secondary" id="__btnReset">
+                        <i class="fas fa-times"></i> Reset
+                    </button>
+                    <button class="btn btn-secondary" id="__btnCopy">
+                        <i class="far fa-copy"></i> Copy Result
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="__result">
+                        Result
+                    </label>
+                    <textarea name="" id="__textResult" rows="10" readonly class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/jquery-3.4.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script src="./vernam.js"></script>
     <script src="./script.js"></script>
 </body>
+
 </html>

@@ -1,23 +1,19 @@
-
-const encryptText = (plain, key) => {
-    let plain_text = plain,
-        key_text = key;
-
-    let arr_key_text = [];
-
-    if (plain_text.length > key_text.length) {
-        
-    }
+var $result_text = $('#__textResult');
 
 
-    plain_text.split('')
-        .map((text, idx) => {
-            let dec_plain = text.charCodeAt(0);
-                bin_plain = dec_plain.toString(2);
+$('#__btnConvert').click(function() {
+    let text_source = $('#__textSource').val(),
+        text_key = $('#__textKey').val();
 
-            console.log(text + ' = ' + dec_plain + ' = ' + bin_plain);            
-        });
+    let result = convertVernam(text_source, text_key);
 
-};
+    $(this).attr('disabled', true)
+            .find('span').attr('Processing');
 
-encryptText('UNISBANK', 'KEY');
+    $result_text.val(result);
+
+    setTimeout(() => {
+        $(this).attr('disabled', false)
+            .find('span').attr('Convert');
+    }, 1000);
+});
