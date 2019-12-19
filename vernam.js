@@ -41,7 +41,8 @@ const convertVernam = (source, key) => {
      * deklarasi parameter new_key untuk menyimpan key baru jika
      * panjang key kurang dari panjang plaintext,
      */
-    let new_key = key_text;
+    let new_key = key_text,
+        arr_new_key = [];
 
     /**
      * deklarasi variabel :
@@ -55,12 +56,23 @@ const convertVernam = (source, key) => {
 
     /**
      * Periksa, jika panjang karakter key kurang dari panjang karakter source / plain text
-     * Gandakan semua karakternya
+     * Gandakan setiap karakternya sesuai panjang plain text
      */
     if (source_text.length > key_text.length) {
-        new_key = key_text.repeat(Math.ceil(source_text.length / key_text.length));
-    }
+        arr_new_key = key_text.split('');
 
+        let i = 0;
+        while(new_key.length < source_text.length) {
+            new_key += arr_new_key[i];
+
+            if (arr_new_key.length - 1 == i) {
+                i = 0;
+                continue;
+            }
+
+            i++;
+        }
+    }
 
     /**
      * Konversi ke desimal ASCII Code dan biner nya setiap karakter pada
