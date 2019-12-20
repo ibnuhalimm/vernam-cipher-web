@@ -58,7 +58,7 @@ const convertVernam = (source, key) => {
      * Periksa, jika panjang karakter key kurang dari panjang karakter source / plain text
      * Gandakan setiap karakternya sesuai panjang plain text
      */
-    if (source_text.length > key_text.length) {
+    if (key_text.length < source_text.length) {
         arr_new_key = key_text.split('');
 
         let i = 0;
